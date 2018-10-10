@@ -10,6 +10,6 @@ router.get('/',(req,res)=>{
 //add stories
 router.get('/add',ensureAuthenticated,(req,res)=>{
     res.render('stories/add')
-})
+}) 
 
 module.exports = router

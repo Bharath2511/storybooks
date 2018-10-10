@@ -6,6 +6,15 @@ const passport = require('passport')
 require('./config/passport')(passport)
 //load routes 
 const auth = require('./routes/auth')
+//load keys
+const keys = require('./config/keys')
+//map global promises
+mongoose.Promise = global.Promise
+//mongoose connect
+mongoose.connect(keys.mongoURI,{
+    useMongoClient:true
+}).then(()=>console.log('mongodb connected'))
+.catch(err => console.log(err))
 
 const app = express()
 

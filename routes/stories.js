@@ -3,7 +3,7 @@ const router = express.Router();
 const {ensureAuthenticated,ensureGuest} = require('../helpers/auth')
 const mongoose = require('mongoose')
 const Story = mongoose.model('stories')
-const User = mongoose.model('users')
+const User = mongoose.model('users') 
 
 //stories index
 router.get('/',(req,res)=>{
@@ -101,6 +101,25 @@ router.delete('/:id',(req,res)=> {
   .then(()=>{
       res.redirect('/dashboard')
   })
+})
+
+//add comment
+router.post('/comment/:id',(req,res)=> {
+    Story.findOne({
+        _id : req.params.id
+    })
+    .then(story=>{
+        const newComment = {
+            commentBody : req.body.commentBody,
+            commentUser : req.user.id
+        }
+        //push to comments array
+        story.comments.unshift(newComment) 
+        story.save()
+        .then(story=>{
+            res.redirect(`/stories/show/${story.id}`)
+        })
+    })
 })
 
 module.exports = router

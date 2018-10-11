@@ -95,4 +95,9 @@ router.put('/:id',(req,res)=>{
     })
 })
 
+//delete stories
+router.delete('/:id',(req,res)=> {
+    res.send('delete')
+})
+
 module.exports = router

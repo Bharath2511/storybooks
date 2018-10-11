@@ -97,7 +97,10 @@ router.put('/:id',(req,res)=>{
 
 //delete stories
 router.delete('/:id',(req,res)=> {
-    res.send('delete')
+  Story.remove({_id : req.params.id})
+  .then(()=>{
+      res.redirect('/dashboard')
+  })
 })
 
 module.exports = router

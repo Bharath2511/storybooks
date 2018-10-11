@@ -32,7 +32,7 @@ router.post('/',(req,res)=>{
         user : req.user.id
     }
     //creating our story
-    new newStory(newStory)
+    new Story(newStory)
     .save()
     .then(story => {
         res.redirect(`/stories/show/${story.id}`)

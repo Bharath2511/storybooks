@@ -7,7 +7,12 @@ const User = mongoose.model('users')
 
 //stories index
 router.get('/',(req,res)=>{
-    res.render('stories/index')
+    Story.find({status:'public'})
+    .populate('user')
+    .then(stories => {
+        res.render('stories/index',{stories:stories})
+    })
+   
 })
 
 //add stories
@@ -35,6 +40,7 @@ router.post('/',(req,res)=>{
     new Story(newStory)
     .save()
     .then(story => {
+        //we are just showing id of the story model
         res.redirect(`/stories/show/${story.id}`)
     })
 

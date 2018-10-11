@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 //create schema
-const UserSchema = new Schema({
+const StorySchema = new Schema({
     title : {
         type:String,
         required:true

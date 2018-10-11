@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const path = require('path')
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
@@ -46,6 +47,9 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:false}))
 //parse application json
 app.use(bodyParser.json())
+
+//method override middleware
+app.use(methodOverride('_method'))
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({

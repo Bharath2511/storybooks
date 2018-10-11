@@ -69,4 +69,9 @@ router.post('/',(req,res)=>{
     //res.send('hello') 
 })
 
+//edit form
+router.put('/:id',(req,res)=>{
+    res.send('put')
+})
+
 module.exports = router

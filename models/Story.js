@@ -42,5 +42,6 @@ const StorySchema = new Schema({
         type : Date,
         default : Date.now
     }
+    //schemas
 })
 mongoose.model('stories',StorySchema,'stories')

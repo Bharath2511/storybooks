@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -21,7 +22,7 @@ const auth = require('./routes/auth');
 const stories = require('./routes/stories')
 
 // Load Keys
-const keys = require('./config/keys');
+//const keys = require('./config/keys');
 
 //handlebars helpers
 const {
@@ -35,7 +36,7 @@ const {
 // Map global promises
 mongoose.Promise = global.Promise;
 // Mongoose Connect
-mongoose.connect(keys.mongoURI, {
+mongoose.connect(process.env.mongoURI, {
   useMongoClient:true
 })
   .then(() => console.log('MongoDB Connected'))

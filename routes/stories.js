@@ -24,7 +24,19 @@ router.get('/show/:id',(req,res)=> {
     .populate('user')
     .populate('comments.commentUser')
     .then(story => {
+        if(story.status == 'public') {
         res.render('stories/show',{story:story})
+        } else {
+            if(req.user) {
+               if(req.user.id == story.user._id) {
+                res.render('stories/show',{story:story})
+               } else {
+                   res.redirect('/stories')
+               }
+            } else {
+            res.redirect('/stories')
+            }
+        }
     })
 })
 

@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 const StorySchema = new Schema({
     title : {
         type:String,
+        
         required:true
     },
     body : {
